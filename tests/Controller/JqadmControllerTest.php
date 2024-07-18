@@ -6,7 +6,7 @@ class JqadmControllerTest extends AimeosTestAbstract
 	{
 		View::addLocation( dirname( __DIR__ ) . '/fixtures/views' );
 
-		$response = $this->action( 'GET', '\Aimeos\Shop\Controller\JqadmController@fileAction', ['site' => 'unittest', 'type' => 'css'] );
+		$response = $this->action( 'GET', '\Aimeos\Shop\Controller\JqadmController@fileAction', ['site' => 'unittest', 'name' => 'index-css', 'locale' => 'en'] );
 
 		$this->assertResponseOk();
 		$this->assertStringContainsString( '.aimeos', $response->getContent() );
@@ -17,10 +17,21 @@ class JqadmControllerTest extends AimeosTestAbstract
 	{
 		View::addLocation( dirname( __DIR__ ) . '/fixtures/views' );
 
-		$response = $this->action( 'GET', '\Aimeos\Shop\Controller\JqadmController@fileAction', ['site' => 'unittest', 'type' => 'js'] );
+		$response = $this->action( 'GET', '\Aimeos\Shop\Controller\JqadmController@fileAction', ['site' => 'unittest', 'name' => 'index-js', 'locale' => 'en'] );
 
 		$this->assertResponseOk();
 		$this->assertStringContainsString( 'Aimeos = {', $response->getContent() );
+	}
+
+
+	public function testBatchAction()
+	{
+		View::addLocation( dirname( __DIR__ ) . '/fixtures/views' );
+
+		$params = ['site' => 'unittest', 'resource' => 'product', 'id' => ['0', '1']];
+		$response = $this->action( 'POST', '\Aimeos\Shop\Controller\JqadmController@batchAction', $params );
+
+		$this->assertEquals( 302, $response->getStatusCode() );
 	}
 
 
@@ -44,7 +55,7 @@ class JqadmControllerTest extends AimeosTestAbstract
 		$response = $this->action( 'GET', '\Aimeos\Shop\Controller\JqadmController@createAction', $params );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertStringContainsString( 'item-product', $response->getContent() );
+		$this->assertStringContainsString( 'list-items', $response->getContent() );
 	}
 
 
