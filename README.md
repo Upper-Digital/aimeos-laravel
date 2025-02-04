@@ -133,8 +133,8 @@ headless distribution is the right choice:
 
 Currently, the Aimeos Laravel packages **2023.10 and later** are fully supported:
 
-- Stable release: 2024.07+ (Laravel 10.x and 11.x)
-- LTS release: 2023.10 (Laravel 9.x, 10.x and 11.x)
+- LTS release: 2024.10+ (Laravel 10.x and 11.x)
+- Old LTS release: 2023.10 (Laravel 9.x, 10.x and 11.x)
 
 If you want to upgrade between major versions, please have a look into the
 [upgrade guide](https://aimeos.org/docs/latest/laravel/setup/#upgrade)!
@@ -222,7 +222,7 @@ Then, add these lines to the composer.json of the **Laravel skeleton application
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "aimeos/aimeos-laravel": "~2024.07",
+        "aimeos/aimeos-laravel": "~2024.10",
         ...
     },
     "scripts": {
@@ -235,11 +235,11 @@ Then, add these lines to the composer.json of the **Laravel skeleton application
     }
 ```
 
-Afterwards, install the Aimeos shop package using
+Afterward, install the Aimeos shop package using
 
 `php composer update -W`
 
-In the last step you must now execute these artisan commands to get a working
+In the last step, you must now execute these artisan commands to get a working
 or updated Aimeos installation:
 
 ```bash
